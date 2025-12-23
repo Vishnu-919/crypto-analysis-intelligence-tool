@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crypto Analysis Dashboard</title>
+</head>
+<body>
+    <h1>Crypto Analysis & Intelligence Tool</h1>
 
+    <form method="post">
+        <input type="text" name="wallet" placeholder="Enter Ethereum Wallet" size="45">
+        <button type="submit">Analyze</button>
+    </form>
+
+    {% if risk_score %}
+        <h2>Risk Score: {{ risk_score }}</h2>
+        <ul>
+            {% for flag in flags %}
+                <li>{{ flag }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Spider Map</h2>
+        <img src="/static/spider_map.png" width="600">
+
+        <h2>Wallet Transactions (Top 50)</h2>
+        <table border="1">
+            <tr>
+                <th>TXID</th>
+                <th>From</th>
+                <th>To</th>
+                <th>ETH</th>
+                <th>Time</th>
+            </tr>
+            {% for row in data %}
+            <tr>
+                <td>{{ row.txid }}</td>
+                <td>{{ row.from }}</td>
+                <td>{{ row.to }}</td>
+                <td>{{ row.value_eth }}</td>
+                <td>{{ row.timestamp }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
