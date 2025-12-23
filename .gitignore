@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+*.pyc
+.env
+wallet_history_report.csv
+spider_map.png
